@@ -1,5 +1,6 @@
 const PATH = require('path');
 const webpack = require('webpack');
+const dotenv = require('dotenv-webpack')
 
 module.exports = {
     entry : './src/index.js',
@@ -28,6 +29,15 @@ module.exports = {
                 test: /\.(png|svg|jpg|jpeg|gif)$/i,
                 type: 'asset/resource',
             },
+            {
+                test : /\.mp4$/i,
+                use : [
+                    "file-loader",
+                ]
+            }
         ]
-    }
+    },
+    plugins : [
+        new dotenv(),
+    ]
 }
