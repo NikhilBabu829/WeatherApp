@@ -1,5 +1,5 @@
 
-import {getLocation, getmonth, getday, sunsettime, videoSetter} from './convertorFunction.js';
+import {getLocation, getmonth, getday, sunsettime, videoSetter, weekDataToUI} from './convertorFunction.js';
 
 const displayingDataInUI = (data)=>{
     const temperatureElement = document.querySelector('.temperature');
@@ -19,8 +19,17 @@ const displayingDataInUI = (data)=>{
     description.innerText = data.currentConditions.conditions
 
     videoSetter(data.currentConditions.conditions)
-    
-    console.log(data);
+
+    displayWeeklyData(data)
+}
+
+const displayWeeklyData = (data)=>{
+    const cardDay = document.querySelectorAll('.cardDay');
+    const cardTemperature = document.querySelectorAll('.cardTemperature');
+    const cardDescription = document.querySelectorAll('.cardDescription');
+    const cardVideo = document.querySelectorAll('.cardVideo');
+    weekDataToUI(cardDay, cardTemperature, cardDescription, cardVideo, data.days)
+    console.log(data.days);
 }
 
 export {displayingDataInUI}
